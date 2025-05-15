@@ -3,6 +3,8 @@
     <app-navbar *ngIf="!authService.isLoggedIn()"></app-navbar>
     <app-sidebar *ngIf="authService.isLoggedIn()"></app-sidebar>
   </header>
+  
+  <!-- Notice the change here - wrapping the router-outlet with a div that correctly positions content -->
   <div [ngClass]="{'content-with-sidebar': authService.isLoggedIn(), 'content-with-navbar': !authService.isLoggedIn()}">
     <router-outlet *ngIf="isLoaded"></router-outlet>
   </div>
