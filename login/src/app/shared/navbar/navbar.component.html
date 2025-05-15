@@ -1,0 +1,33 @@
+<nav class="navbar">
+  <div class="logo"></div>
+  <div class="nav-links">
+    <a [routerLink]="['/home']">Trang chủ</a>
+    <div class="dropdown">
+      <a href="#" class="dropdown-toggle">Sản Phẩm</a>
+      <div class="dropdown-menu">
+        <a href="#" class="dropdown-item">Khách Hàng Chính Phủ</a>
+        <a href="#" class="dropdown-item">Khách Hàng An Ninh - Quốc Phòng</a>
+        <a href="#" class="dropdown-item">Khách Hàng Doanh Nghiệp</a>
+        <a href="#" class="dropdown-item">Khách Hàng Tài Chính - Ngân Hàng</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <a href="#" class="dropdown-toggle">Thực Tập Sinh</a>
+      <div class="dropdown-menu">
+        <a [routerLink]="['/intern']" class="dropdown-item">Danh Sách Thực Tập Sinh</a>
+        <a [routerLink]="['/internws']" class="dropdown-item">Lịch Làm Việc</a>
+        <a href="#" class="dropdown-item">Đánh Giá Hiệu Xuất</a>
+      </div>
+    </div>
+    <a href="#" class="nav-link">Giới Thiệu</a>
+    <a href="#" class="nav-link">Liên Hệ</a>
+    <div class="auth-buttons">
+      <ng-container *ngIf="!authService.isLoggedIn(); else loggedIn">
+        <a [routerLink]="['/login']" class="btn btn-login">Đăng nhập</a>
+      </ng-container>
+      <ng-template #loggedIn>
+        <a (click)="logout()" class="btn btn-login">Đăng xuất</a>
+      </ng-template>
+    </div>
+  </div>
+</nav>
