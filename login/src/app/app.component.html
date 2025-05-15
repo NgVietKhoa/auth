@@ -1,6 +1,9 @@
 <main #mainElement class="main" [ngClass]="{'loaded': isLoaded}">
   <header *ngIf="isLoaded">
-    <app-navbar></app-navbar>
+    <app-navbar *ngIf="!authService.isLoggedIn()"></app-navbar>
+    <app-sidebar *ngIf="authService.isLoggedIn()"></app-sidebar>
   </header>
-  <router-outlet *ngIf="isLoaded"></router-outlet>
+  <div [ngClass]="{'content-with-sidebar': authService.isLoggedIn(), 'content-with-navbar': !authService.isLoggedIn()}">
+    <router-outlet *ngIf="isLoaded"></router-outlet>
+  </div>
 </main>

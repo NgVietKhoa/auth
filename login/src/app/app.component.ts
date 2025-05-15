@@ -3,11 +3,13 @@ import { Component, OnInit, Inject, PLATFORM_ID, ElementRef, ViewChild } from '@
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, RouterModule, NavbarComponent],
+  imports: [RouterOutlet, CommonModule, RouterModule, NavbarComponent, SidebarComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
@@ -15,7 +17,10 @@ export class AppComponent implements OnInit {
   @ViewChild('mainElement', { static: true }) mainElement!: ElementRef;
   isLoaded = false;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    public authService: AuthService
+  ) {}
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
