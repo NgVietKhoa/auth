@@ -1,0 +1,418 @@
+.container {
+  margin: 5.4rem 1rem 2rem 1rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  background-color: #fff !important;
+}
+
+.container button {
+  padding: .4rem 1rem;
+  background: linear-gradient(90deg, #4f46e5, #9333ea);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.container button:hover {
+  background: linear-gradient(90deg, #6366f1, #a855f7);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.container button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.container select {
+  padding: 0.4rem 1rem;
+  border: 1px solid #9333ea;
+  color: #4f46e5;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.container select:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.container select:focus {
+  outline: none;
+}
+
+.grid-cols-7 {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.border {
+  border: 1px solid #e5e7eb;
+}
+
+.p-2 {
+  padding: 0.7rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.bg-gray-100 {
+  background-color: #f3f4f6;
+}
+
+.bg-blue-100 {
+  background-color: #dbeafe;
+}
+
+.bg-blue-500 {
+  background-color: #3b82f6;
+}
+
+.bg-green-500 {
+  background-color: #10b981;
+}
+
+.bg-white {
+  background-color: #fff;
+}
+
+.text-white {
+  color: white;
+}
+
+.rounded {
+  border-radius: 0.375rem;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.space-x-2 > * + * {
+  margin-left: 0.5rem;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.inset-0 {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.z-50 {
+  z-index: 50;
+}
+
+.max-w-4xl {
+  max-width: 64rem;
+}
+
+.overflow-x-auto {
+  overflow-x: auto;
+}
+
+.border-collapse {
+  border-collapse: collapse;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.hover\:bg-gray-100:hover {
+  background-color: #f3f4f6;
+}
+
+.text-gray-500 {
+  color: #6b7280;
+}
+
+.hover\:text-gray-700:hover {
+  color: #374151;
+}
+
+/* Skeleton Loading Styles */
+.skeleton {
+  height: 1.5rem;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px;
+}
+
+.skeleton-title {
+  width: 200px;
+  height: 2rem;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px;
+}
+
+.skeleton-select {
+  width: 120px;
+  height: 2rem;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 6px;
+}
+
+.skeleton-button {
+  width: 80px;
+  height: 2rem;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 6px;
+}
+
+.skeleton-button.small {
+  width: 40px;
+}
+
+.skeleton-day {
+  width: 100%;
+  height: 4rem;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px;
+}
+
+/* Error Message */
+.error-message {
+  color: #dc2626;
+  text-align: center;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+}
+
+/* Animation cho Lịch và Modal */
+.grid-cols-7, .modal-container {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.grid-cols-7 > div, .table-row {
+  opacity: 0;
+  animation: fadeInRow 0.3s ease-out forwards;
+  animation-delay: calc(0.05s * var(--row-index));
+}
+
+/* Keyframes */
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInRow {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Modal-specific styles */
+.modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  transition: opacity 0.3s ease-in-out;
+}
+
+.modal-content {
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 56rem;
+  margin: 1.5rem;
+  padding: 1.5rem;
+  position: relative;
+  transform: translateY(0);
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 1;
+}
+
+/* Modal animation for opening */
+.modal-container.ng-enter .modal-content {
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+.modal-container.ng-enter-active .modal-content {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Modal animation for closing */
+.modal-container.ng-leave .modal-content {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.modal-container.ng-leave-active .modal-content {
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+/* Table-specific styles */
+.table-header {
+  background-color: #f8fafc;
+  font-weight: 600;
+  color: #1f2937;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+}
+
+.table-row {
+  background-color: #ffffff;
+  transition: background-color 0.2s ease;
+}
+
+.table-row:hover {
+  background-color: #f1f5f9;
+}
+
+/* Thêm style để bảng có thể cuộn dọc */
+.table-container {
+  max-height: 400px;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* Đảm bảo tiêu đề bảng cố định khi cuộn */
+.table-header th {
+  position: sticky;
+  top: 0;
+  background-color: #f8fafc;
+  z-index: 10;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .modal-content {
+    margin: 1rem;
+    padding: 1rem;
+    max-width: 95%;
+  }
+
+  .modal-content h2 {
+    font-size: 1.125rem;
+  }
+
+  .table-header th,
+  .table-row td {
+    font-size: 0.75rem;
+    padding: 0.5rem;
+  }
+
+  .table-container {
+    max-height: 300px;
+  }
+
+  .skeleton-title {
+    width: 150px;
+    height: 1.5rem;
+  }
+
+  .skeleton-select {
+    width: 100px;
+    height: 1.8rem;
+  }
+
+  .skeleton-button {
+    width: 60px;
+    height: 1.8rem;
+  }
+
+  .skeleton-button.small {
+    width: 30px;
+  }
+
+  .skeleton-day {
+    height: 3rem;
+  }
+}

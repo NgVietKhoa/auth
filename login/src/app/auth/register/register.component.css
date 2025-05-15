@@ -6,157 +6,296 @@
   font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-/* Login Wrapper */
-.login-wrapper {
+/* Register Wrapper with Aurora Background */
+.register-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: 16px; /* Thêm padding để tránh chạm cạnh trên mobile */
+  background: rgba(0, 0, 0, 0.4);
+  position: relative;
+  padding-top: 60px;
+  overflow: hidden;
 }
 
-/* Login Card */
-.login-card {
+/* Aurora Background Animation */
+.register-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    rgba(74, 108, 247, 0.2),
+    rgba(101, 46, 122, 0.2),
+    rgba(74, 108, 247, 0.2)
+  );
+  animation: auroraFlow 12s ease-in-out infinite;
+  z-index: 0;
+  filter: blur(50px);
+}
+
+@keyframes auroraFlow {
+  0% {
+    transform: rotate(0deg) translate(10%, 10%);
+  }
+  50% {
+    transform: rotate(180deg) translate(-10%, -10%);
+  }
+  100% {
+    transform: rotate(360deg) translate(10%, 10%);
+  }
+}
+
+/* Register Card with Liquid Glow (Smaller Size) */
+.register-card {
   width: 100%;
-  max-width: 420px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  max-height: 90vh; /* Giới hạn chiều cao tối đa */
-  overflow-y: auto; /* Cho phép cuộn bên trong nếu nội dung dài */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 420px; /* Reduced from 420px */
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px; /* Slightly smaller radius */
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1), 0 0 15px rgba(74, 108, 247, 0.15);
+  max-height: 95vh; /* Prevent overflow */
+  overflow-y: auto;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 1;
+  animation: liquidGlow 4s ease-in-out infinite;
 }
 
-.login-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+@keyframes liquidGlow {
+  0%, 100% {
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1), 0 0 15px rgba(74, 108, 247, 0.15);
+  }
+  50% {
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1), 0 0 25px rgba(74, 108, 247, 0.25);
+  }
 }
 
-/* Login Header */
-.login-header {
-  padding: 24px 24px 16px; /* Giảm padding */
+.register-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15), 0 0 25px rgba(74, 108, 247, 0.3);
+}
+
+/* Register Header with Smooth Fade */
+.register-header {
+  padding: 16px; /* Reduced from 20px */
   text-align: center;
-  background: linear-gradient(to right, #373097 0%, #652e7a 100%);
+  background: linear-gradient(135deg, #2a2a72 0%, #5e2676 100%);
   color: white;
+  animation: smoothFade 1.2s ease-out;
 }
 
-.login-header h2 {
+@keyframes smoothFade {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.register-header h2 {
   font-weight: 600;
-  margin-bottom: 6px; /* Giảm margin */
-  font-size: 22px; /* Giảm font-size */
+  margin-bottom: 3px;
+  font-size: 24px;
 }
 
-.login-header p {
-  opacity: 0.9;
-  font-size: 13px; /* Giảm font-size */
+.register-header p {
+  opacity: 0.85;
+  font-size: 13px;
 }
 
-/* Login Form */
-.login-form {
-  padding: 24px; /* Giảm padding */
+/* Register Form with Elastic Slide */
+.register-form {
+  padding: 20px; /* Reduced from 24px */
+  animation: elasticSlide 1.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes elasticSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .form-group {
-  margin-bottom: 16px; /* Giảm margin */
+  margin-bottom: 10px; /* Reduced from 18px */
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 6px; /* Giảm margin */
+  margin-bottom: 5px; /* Reduced from 6px */
   font-weight: 500;
-  color: #333;
-  font-size: 13px; /* Giảm font-size */
+  color: #222;
+  font-size: 12px; /* Reduced from 13px */
+  transition: color 0.3s ease;
 }
 
 .form-control {
   width: 100%;
-  padding: 10px 14px; /* Giảm padding */
-  border: 1px solid #e0e3e9;
-  border-radius: 8px;
-  font-size: 14px; /* Giảm font-size */
-  transition: border-color 0.3s, box-shadow 0.3s;
+  padding: 8px 12px; /* Reduced from 10px 14px */
+  border: 1px solid #d9e0e9;
+  border-radius: 6px; /* Reduced from 8px */
+  font-size: 13px; /* Reduced from 14px */
+  background: rgba(255, 255, 255, 0.8);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .form-control:focus {
   outline: none;
-  border-color: #373097;
-  box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1);
+  border-color: #2a2a72;
+  box-shadow: 0 0 0 2px rgba(74, 108, 247, 0.15); /* Reduced shadow size */
+  transform: translateY(-1px); /* Reduced lift */
 }
 
 .form-hint {
   display: block;
-  margin-top: 6px; /* Giảm margin */
-  font-size: 11px; /* Giảm font-size */
+  margin-top: 5px; /* Reduced from 6px */
+  font-size: 10px; /* Reduced from 11px */
   color: #6c757d;
+  transition: color 0.3s ease;
 }
 
-/* Password Input */
-.password-input {
-  position: relative;
-}
-
-.forgot-password {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 12px; /* Giảm font-size */
-  color: #373097;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-/* Login Button */
-.login-button {
+/* Register Button with Liquid Ripple */
+.register-button {
   width: 100%;
-  padding: 12px; /* Giảm padding */
-  background: linear-gradient(to right, #373097 0%, #652e7a 100%);
+  padding: 10px; /* Reduced from 12px */
+  background: linear-gradient(135deg, #2a2a72 0%, #5e2676 100%);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px; /* Reduced from 8px */
   font-weight: 600;
-  font-size: 14px; /* Giảm font-size */
+  font-size: 13px; /* Reduced from 14px */
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  transition: all 0.3s ease;
+  gap: 5px; /* Reduced from 6px */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
 }
 
-.login-button:hover {
-  background: linear-gradient(to right, #3e36af 0%, #793694 100%);
-  box-shadow: 0 5px 15px rgba(74, 108, 247, 0.3);
+.register-button:hover {
+  background: linear-gradient(135deg, #3e36af 0%, #793694 100%);
+  box-shadow: 0 4px 15px rgba(74, 108, 247, 0.3); /* Reduced shadow */
+  transform: translateY(-1px); /* Reduced lift */
 }
 
-.login-button:active {
-  transform: scale(0.98);
+.register-button:active {
+  transform: scale(0.96); /* Slightly softer scale */
 }
 
-/* Login Footer */
-.login-footer {
-  padding: 16px; /* Giảm padding */
+.register-button::before {
+  content: '';
+  position: absolute;
+  width: 120px; /* Reduced ripple size */
+  height: 120px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.register-button:active::before {
+  transform: scale(2.2); /* Adjusted ripple scale */
+}
+
+.register-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Register Footer with Gentle Fade */
+.register-footer {
+  padding: 12px; /* Reduced from 16px */
   text-align: center;
-  border-top: 1px solid #f0f0f0;
-  font-size: 13px; /* Giảm font-size */
+  border-top: 1px solid #e8ecef;
+  font-size: 12px; /* Reduced from 13px */
   color: #6c757d;
+  animation: smoothFade 1.6s ease-out;
 }
 
-.register-link {
-  color: #373097;
+.login-link {
+  color: #2a2a72;
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.2s;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.register-link:hover {
+.login-link:hover {
   color: #3e36af;
   text-decoration: underline;
+  transform: translateY(-1px);
+}
+
+/* Error Message with Bounce Animation */
+.error-message {
+  background-color: #fff0f0;
+  border-left: 3px solid #ff3b30; /* Reduced border size */
+  color: #dc3545;
+  padding: 8px 12px; /* Reduced from 10px 14px */
+  margin-bottom: 12px; /* Reduced from 16px */
+  border-radius: 4px; /* Reduced from 6px */
+  font-size: 12px; /* Reduced from 13px */
+  animation: bounce 0.6s ease-in-out;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(-8px);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(4px);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Success Message with Scale-In Animation */
+.success-message {
+  background-color: #e6ffed;
+  border-left: 3px solid #28a745; /* Reduced border size */
+  color: #28a745;
+  padding: 8px 12px; /* Reduced from 10px 14px */
+  margin-bottom: 12px; /* Reduced from 16px */
+  border-radius: 4px; /* Reduced from 6px */
+  font-size: 12px; /* Reduced from 13px */
+  animation: scaleIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes scaleIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 /* Responsive Design */
 @media (max-height: 600px) {
-  .login-card {
-    max-height: 80vh; /* Giảm max-height trên màn hình thấp */
+  .register-card {
+    max-height: 80vh; /* Reduced from 85vh */
+  }
+}
+
+@media (max-width: 400px) {
+  .register-card {
+    max-width: 320px; /* Further reduce for very small screens */
+    padding: 10px;
   }
 }

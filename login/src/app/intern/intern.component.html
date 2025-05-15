@@ -1,0 +1,78 @@
+<main>
+  <!-- Filter and Search (Tĩnh, với Skeleton Loading) -->
+  <div *ngIf="isLoading" class="filter-container">
+    <div class="skeleton skeleton-input"></div>
+    <div class="skeleton skeleton-select"></div>
+    <div class="skeleton skeleton-select"></div>
+  </div>
+  <div *ngIf="!isLoading" class="filter-container">
+    <input
+      type="text"
+      class="search-input"
+      placeholder="Tìm kiếm theo tên..."
+    />
+    <select class="filter-select">
+      <option value="">Tất cả giới tính</option>
+      <option value="1">Nam</option>
+      <option value="0">Nữ</option>
+    </select>
+    <select class="filter-select">
+      <option value="">Sắp xếp theo</option>
+      <option value="name">Tên (A-Z)</option>
+      <option value="startDate">Ngày bắt đầu</option>
+      <option value="nextReviewDate">Ngày đánh giá tiếp theo</option>
+    </select>
+  </div>
+
+  <!-- Skeleton Loading cho bảng -->
+  <div *ngIf="isLoading" class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Mã</th>
+          <th>Tên</th>
+          <th>Ngày sinh</th>
+          <th>Giới tính</th>
+          <th>Ngày bắt đầu</th>
+          <th>Ngày đánh giá tiếp theo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let _ of [1, 2, 3, 4, 5]">
+          <td><div class="skeleton"></div></td>
+          <td><div class="skeleton"></div></td>
+          <td><div class="skeleton"></div></td>
+          <td><div class="skeleton"></div></td>
+          <td><div class="skeleton"></div></td>
+          <td><div class="skeleton"></div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Data Table -->
+  <div *ngIf="!isLoading" class="table-container" [ngClass]="'animation-' + animationKey">
+    <table>
+      <thead>
+        <tr>
+          <th>Mã</th>
+          <th>Tên</th>
+          <th>Ngày sinh</th>
+          <th>Giới tính</th>
+          <th>Ngày bắt đầu</th>
+          <th>Ngày đánh giá tiếp theo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let intern of interns; trackBy: trackById; let i = index" [style.--row-index]="i + 1">
+          <td>{{ intern.id }}</td>
+          <td>{{ intern.name }}</td>
+          <td>{{ intern.dateOfBirth | date:'yyyy-MM-dd' }}</td>
+          <td>{{ intern.gender === 1 ? 'Nam' : 'Nữ' }}</td>
+          <td>{{ intern.startDate | date:'yyyy-MM-dd' }}</td>
+          <td>{{ intern.nextReviewDate | date:'yyyy-MM-dd' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>

@@ -1,0 +1,182 @@
+<div class="container mx-auto p-4">
+  <!-- Skeleton Loading cho Tiêu đề và Điều khiển -->
+  <div *ngIf="isLoading" class="flex justify-between items-center mb-4">
+    <div class="skeleton skeleton-title"></div>
+    <div class="flex items-center space-x-2">
+      <div class="skeleton skeleton-select"></div>
+      <div class="skeleton skeleton-button"></div>
+      <div class="skeleton skeleton-button small"></div>
+      <div class="skeleton skeleton-button small"></div>
+    </div>
+  </div>
+
+  <!-- Tiêu đề và Điều khiển -->
+  <div *ngIf="!isLoading" class="flex justify-between items-center mb-4">
+    <h1 class="text-2xl font-bold">Lịch làm việc thực tập sinh</h1>
+    <div class="flex items-center space-x-2">
+      <select
+        [(ngModel)]="selectedMonth"
+        (change)="updateCalendar()"
+        class="border rounded p-1"
+      >
+        <option *ngFor="let month of months" [value]="month">
+          {{ month }} {{ selectedYear }}
+        </option>
+      </select>
+      <button (click)="goToToday()" class="border rounded px-4 py-1">
+        Hôm nay
+      </button>
+      <button (click)="changeMonth(-1)" class="border rounded px-2 py-1">
+        &lt;
+      </button>
+      <button (click)="changeMonth(1)" class="border rounded px-2 py-1">
+        &gt;
+      </button>
+    </div>
+  </div>
+
+  <!-- Thông báo lỗi -->
+  <div *ngIf="errorMessage && !isLoading" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Skeleton Loading cho Lịch -->
+  <div *ngIf="isLoading" class="grid grid-cols-7 gap-1 text-center">
+    <div *ngFor="let day of daysOfWeek" class="font-bold">{{ day }}</div>
+    <div *ngFor="let _ of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35]" class="border p-2">
+      <div class="skeleton skeleton-day"></div>
+    </div>
+  </div>
+
+  <!-- Lịch -->
+  <div *ngIf="!isLoading" class="grid grid-cols-7 gap-1 text-center" [ngClass]="'animation-' + animationKey">
+    <div *ngFor="let day of daysOfWeek" class="font-bold">{{ day }}</div>
+    <div
+      *ngFor="let day of calendarDays; trackBy: trackByDate; let i = index"
+      (click)="selectDay(day)"
+      class="border p-2 cursor-pointer relative"
+      [ngClass]="{
+        'bg-gray-100': day.month !== selectedMonth,
+        'bg-blue-100': selectedDay === day.date
+      }"
+      [style.--row-index]="i + 1"
+    >
+      <span>{{ day.date || '' }}</span>
+      <div
+        *ngFor="let task of getTasksForDay(day.date)"
+        class="bg-blue-500 text-white rounded text-xs mt-1 p-1"
+      >
+        {{ task.name }}
+      </div>
+      <div
+        *ngIf="getInternCountForDay(day.date) > 0"
+        class="bg-green-500 text-white rounded text-xs mt-1 p-1"
+      >
+        {{ getInternCountForDay(day.date) }} Thực tập sinh
+      </div>
+    </div>
+  </div>
+
+  <!-- Skeleton Loading cho Modal -->
+  <div
+    *ngIf="showModal && selectedDay !== null && isLoading"
+    class="fixed inset-0 bg-black bg-opacity-50 modal-container"
+  >
+    <div class="modal-content p-6">
+      <div class="flex justify-between items-center mb-4">
+        <div class="skeleton skeleton-title"></div>
+        <div class="skeleton skeleton-button small"></div>
+      </div>
+      <div class="table-container">
+        <table class="w-full border-collapse">
+          <thead>
+            <tr class="table-header">
+              <th class="border p-2 text-left">Tên Thực tập sinh</th>
+              <th class="border p-2 text-left">Nhiệm vụ</th>
+              <th class="border p-2 text-left">Số giờ làm việc/Tuần</th>
+              <th class="border p-2 text-left">Ngày bắt đầu</th>
+              <th class="border p-2 text-left">Ngày kết thúc</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let _ of [1,2,3]">
+              <td class="border p-2"><div class="skeleton"></div></td>
+              <td class="border p-2"><div class="skeleton"></div></td>
+              <td class="border p-2"><div class="skeleton"></div></td>
+              <td class="border p-2"><div class="skeleton"></div></td>
+              <td class="border p-2"><div class="skeleton"></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="mt-4 flex justify-end">
+        <div class="skeleton skeleton-button"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Lịch làm việc trong ngày -->
+  <div
+    *ngIf="showModal && selectedDay !== null && !isLoading"
+    class="fixed inset-0 bg-black bg-opacity-50 modal-container"
+    [ngClass]="'animation-' + animationKey"
+  >
+    <div class="modal-content p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-bold">Lịch ngày {{ selectedDay }}</h2>
+        <button
+          (click)="closeModal()"
+          class="text-gray-500 hover:text-gray-700"
+        >
+          ×
+        </button>
+      </div>
+      <div class="table-container">
+        <table class="w-full border-collapse">
+          <thead>
+            <tr class="table-header">
+              <th class="border p-2 text-left">Tên Thực tập sinh</th>
+              <th class="border p-2 text-left">Nhiệm vụ</th>
+              <th class="border p-2 text-left">Số giờ làm việc/Tuần</th>
+              <th class="border p-2 text-left">Ngày bắt đầu</th>
+              <th class="border p-2 text-left">Ngày kết thúc</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let schedule of getSchedulesForDay(selectedDay); let i = index"
+              class="table-row"
+              [style.--row-index]="i + 1"
+            >
+              <td class="border p-2">{{ schedule.intern.name }}</td>
+              <td class="border p-2">{{ getTaskNameForDay(selectedDay) }}</td>
+              <td class="border p-2">{{ schedule.availableHoursPerWeek }}</td>
+              <td class="border p-2">
+                {{ schedule.startDate | date : "mediumDate" }}
+              </td>
+              <td class="border p-2">
+                {{ schedule.endDate | date : "mediumDate" : "Không xác định" }}
+              </td>
+            </tr>
+            <tr
+              *ngIf="getSchedulesForDay(selectedDay).length === 0"
+              class="table-row"
+            >
+              <td colspan="5" class="border p-2 text-center">
+                Không có lịch làm việc cho ngày này
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="mt-4 flex justify-end">
+        <button
+          (click)="closeModal()"
+          class="bg-blue-500 text-white rounded px-4 py-2"
+        >
+          Đóng
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

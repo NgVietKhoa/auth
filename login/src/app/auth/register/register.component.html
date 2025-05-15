@@ -1,14 +1,22 @@
 <main>
-  <div class="login-wrapper">
-    <div class="login-card">
-      <div class="login-header">
-        <h2>Create Account</h2>
-        <p class="text-muted">Please fill in the details to register</p>
+  <div class="register-wrapper">
+    <div class="register-card">
+      <div class="register-header">
+        <h2>Tạo tài khoản</h2>
+        <p class="text-muted">Vui lòng điền thông tin để đăng ký</p>
       </div>
       
-      <form (ngSubmit)="onSubmit()" class="login-form">
+      <form (ngSubmit)="onSubmit()" class="register-form">
+        <div *ngIf="errorMessage" class="error-message">
+          {{ errorMessage }}
+        </div>
+        
+        <div *ngIf="successMessage" class="success-message">
+          {{ successMessage }}
+        </div>
+        
         <div class="form-group">
-          <label for="username">Username</label>
+          <label for="username">Tên đăng nhập</label>
           <input type="text" 
                  class="form-control" 
                  id="username" 
@@ -17,7 +25,7 @@
                  placeholder="john.doe"
                  required
                  aria-describedby="usernameHelp">
-          <small id="usernameHelp" class="form-hint">Enter a unique username</small>
+          <small id="usernameHelp" class="form-hint">Nhập tên đăng nhập duy nhất</small>
         </div>
         
         <div class="form-group">
@@ -30,11 +38,11 @@
                  placeholder="john.doe@example.com"
                  required
                  aria-describedby="emailHelp">
-          <small id="emailHelp" class="form-hint">Enter a valid email address</small>
+          <small id="emailHelp" class="form-hint">Nhập địa chỉ email hợp lệ</small>
         </div>
         
         <div class="form-group">
-          <label for="password">Password</label>
+          <label for="password">Mật khẩu</label>
           <div class="password-input">
             <input type="password" 
                    class="form-control" 
@@ -45,11 +53,11 @@
                    required
                    minlength="6">
           </div>
-          <small class="form-hint">Password must be at least 6 characters</small>
+          <small class="form-hint">Mật khẩu phải có ít nhất 6 ký tự</small>
         </div>
         
         <div class="form-group">
-          <label for="confirmPassword">Confirm Password</label>
+          <label for="confirmPassword">Xác nhận mật khẩu</label>
           <div class="password-input">
             <input type="password" 
                    class="form-control" 
@@ -60,21 +68,21 @@
                    required
                    minlength="6">
           </div>
-          <small class="form-hint">Re-enter your password to confirm</small>
+          <small class="form-hint">Nhập lại mật khẩu để xác nhận</small>
         </div>
         
-        <button type="submit" class="login-button">
-          <span>Register</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+        <button type="submit" class="register-button" [disabled]="isLoading">
+          <span *ngIf="!isLoading">Đăng ký</span>
+          <span *ngIf="isLoading">Đang xử lý...</span>
+          <svg *ngIf="!isLoading" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
           </svg>
         </button>
       </form>
       
-      <div class="login-footer">
-        <p>Already have an account? <a href="/login" class="register-link">Sign in</a></p>
+      <div class="register-footer">
+        <p>Đã có tài khoản? <a [routerLink]="['/login']" class="register-link">Đăng nhập</a></p>
       </div>
     </div>
   </div>
 </main>
-
